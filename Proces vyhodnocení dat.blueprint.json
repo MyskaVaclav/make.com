@@ -1,0 +1,956 @@
+{
+    "name": "Proces vyhodnocení dat",
+    "flow": [
+        {
+            "id": 2,
+            "module": "google-sheets:getSheetContent",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 4920502
+            },
+            "mapper": {
+                "from": "drive",
+                "range": "A2:T",
+                "select": "list",
+                "sheetId": "List 1",
+                "spreadsheetId": "/1R-Q9mHR7d38hwMxgfvPD07WCvu75UJ5WSswdDwjZuEM",
+                "tableFirstRow": "A1:T1",
+                "includesHeaders": true,
+                "valueRenderOption": "FORMATTED_VALUE",
+                "dateTimeRenderOption": "FORMATTED_STRING"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "from": {
+                            "label": "My Drive"
+                        },
+                        "select": {
+                            "label": "Search by path"
+                        },
+                        "sheetId": {
+                            "label": "List 1"
+                        },
+                        "spreadsheetId": {
+                            "path": [
+                                "Make.com databáze 2"
+                            ]
+                        },
+                        "includesHeaders": {
+                            "mode": "chose"
+                        },
+                        "valueRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted value"
+                        },
+                        "dateTimeRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted string"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "vutbrgoogle (257997@vutbr.cz)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Search Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "list",
+                                "fromAll",
+                                "map"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "range",
+                        "type": "text",
+                        "label": "Range",
+                        "required": true
+                    },
+                    {
+                        "name": "includesHeaders",
+                        "type": "boolean",
+                        "label": "Table contains headers",
+                        "required": true
+                    },
+                    {
+                        "name": "valueRenderOption",
+                        "type": "select",
+                        "label": "Value render option",
+                        "validate": {
+                            "enum": [
+                                "FORMATTED_VALUE",
+                                "UNFORMATTED_VALUE",
+                                "FORMULA"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "dateTimeRenderOption",
+                        "type": "select",
+                        "label": "Date and time render option",
+                        "validate": {
+                            "enum": [
+                                "SERIAL_NUMBER",
+                                "FORMATTED_STRING"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "spreadsheetId",
+                        "type": "file",
+                        "label": "Spreadsheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "tableFirstRow",
+                        "type": "text",
+                        "label": "Row with headers"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__ROW_NUMBER__",
+                        "type": "number",
+                        "label": "Row number"
+                    },
+                    {
+                        "name": "__SPREADSHEET_ID__",
+                        "type": "text",
+                        "label": "Spreadsheet ID"
+                    },
+                    {
+                        "name": "__SHEET__",
+                        "type": "text",
+                        "label": "Sheet"
+                    },
+                    {
+                        "name": "0",
+                        "type": "text",
+                        "label": "Mon May 04 2026 13:00:04 GMT+0000 (Coordinated Universal Time) (A)"
+                    },
+                    {
+                        "name": "1",
+                        "type": "text",
+                        "label": "99 (B)"
+                    },
+                    {
+                        "name": "2",
+                        "type": "text",
+                        "label": "0 (C)"
+                    },
+                    {
+                        "name": "3",
+                        "type": "text",
+                        "label": "788,6 (D)"
+                    },
+                    {
+                        "name": "4",
+                        "type": "text",
+                        "label": "29,5 (E)"
+                    },
+                    {
+                        "name": "5",
+                        "type": "text",
+                        "label": "24,4 (F)"
+                    },
+                    {
+                        "name": "6",
+                        "type": "text",
+                        "label": "3009 (G)"
+                    },
+                    {
+                        "name": "7",
+                        "type": "text",
+                        "label": "2090 (H)"
+                    },
+                    {
+                        "name": "8",
+                        "type": "text",
+                        "label": "3020 (I)"
+                    },
+                    {
+                        "name": "9",
+                        "type": "text",
+                        "label": "2110 (J)"
+                    },
+                    {
+                        "name": "10",
+                        "type": "text",
+                        "label": "3007 (K)"
+                    },
+                    {
+                        "name": "11",
+                        "type": "text",
+                        "label": "3018 (L)"
+                    },
+                    {
+                        "name": "12",
+                        "type": "text",
+                        "label": "3002 (M)"
+                    },
+                    {
+                        "name": "13",
+                        "type": "text",
+                        "label": "2011 (N)"
+                    },
+                    {
+                        "name": "14",
+                        "type": "text",
+                        "label": "3,406 (O)"
+                    },
+                    {
+                        "name": "15",
+                        "type": "text",
+                        "label": "3,431 (P)"
+                    },
+                    {
+                        "name": "16",
+                        "type": "text",
+                        "label": "24 (Q)"
+                    },
+                    {
+                        "name": "17",
+                        "type": "text",
+                        "label": "30 (R)"
+                    },
+                    {
+                        "name": "18",
+                        "type": "text",
+                        "label": "34,25 (S)"
+                    },
+                    {
+                        "name": "19",
+                        "type": "text",
+                        "label": "34,3 (T)"
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 5,
+            "module": "builtin:BasicAggregator",
+            "version": 1,
+            "parameters": {
+                "feeder": 2
+            },
+            "mapper": {
+                "0": "{{2.`0`}}",
+                "1": "{{2.`1`}}",
+                "2": "{{2.`2`}}",
+                "3": "{{2.`3`}}",
+                "4": "{{2.`4`}}",
+                "5": "{{2.`5`}}",
+                "6": "{{2.`6`}}",
+                "7": "{{2.`7`}}",
+                "8": "{{2.`8`}}",
+                "9": "{{2.`9`}}",
+                "10": "{{2.`10`}}",
+                "11": "{{2.`11`}}",
+                "12": "{{2.`12`}}",
+                "13": "{{2.`13`}}",
+                "14": "{{2.`14`}}",
+                "15": "{{2.`15`}}",
+                "16": "{{2.`16`}}",
+                "17": "{{2.`17`}}",
+                "18": "{{2.`18`}}",
+                "19": "{{2.`19`}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "extra": {
+                        "feeder": {
+                            "label": "Google Sheets - Get Range Values [2]"
+                        },
+                        "target": {
+                            "label": "Custom"
+                        }
+                    }
+                },
+                "advanced": true
+            }
+        },
+        {
+            "id": 16,
+            "module": "code:ExecuteCode",
+            "version": 0,
+            "parameters": {},
+            "mapper": {
+                "input": [
+                    {
+                        "name": "array",
+                        "value": "{{5.array}}"
+                    }
+                ],
+                "language": "javascript",
+                "inputFormat": "editor",
+                "dependencies": [],
+                "codeEditorJavascript": "//Make.com JS module: 24h compliance evaluator (INTERVALS) + HTML render\n// ----------------- CONFIG -----------------\nconst IDX = {\n  time: 0,\n  soc: 1,\n  dcCurrent: 2,\n  dcVoltage: 3,\n  modTmax: 4,\n  modTmin: 5,\n  cellIdMaxV: 6,\n  cellIdMinV: 7,\n  cellIdMaxT: 8,\n  cellIdMinT: 9,\n  modIdMaxV: 10,\n  modIdMinV: 11,\n  modIdMaxT: 12,\n  modIdMinT: 13,\n  cellVmin: 14,\n  cellVmax: 15,\n  cellTmin: 16,\n  cellTmax: 17,\n  modVmin: 18,\n  modVmax: 19,\n};\n\nconst LIMITS = {\n  cellTemp: { min: 0, max: 50, unit: \"°C\" },\n  modTemp:  { min: 0, max: 50, unit: \"°C\" },\n  soc:      { min: 8, max: 98, unit: \"%\" },\n  cellVolt: { min: 3, max: 3.6, unit: \"V\" },\n\n  cellTempSpreadMax: 5,\n  modTempSpreadMax:  5,\n  moduleVoltSpreadMax: 0.3,\n  cellVoltSpreadMax:   0.03,\n};\n\nconst TIMEZONE = \"Europe/Prague\";\n\n// ----------------- helpers -----------------\nconst toNum = (v) => {\n  if (v === null || v === undefined || v === \"\") return null;\n  const s = String(v).trim().replace(/\\s+/g, \"\").replace(\",\", \".\");\n  const n = Number(s);\n  return Number.isFinite(n) ? n : null;\n};\n\nconst toMs = (t) => {\n  const ms = Date.parse(t);\n  return Number.isFinite(ms) ? ms : null;\n};\n\nfunction pad2(n){ return String(n).padStart(2, \"0\"); }\nfunction pad3(n){ return String(n).padStart(3, \"0\"); }\n\nfunction esc(v) {\n  return String(v ?? \"\")\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction pct(n, d) {\n  if (!d) return 0;\n  return Math.round((n / d) * 10000) / 100;\n}\n\nfunction tallyInc(map, idRaw) {\n  const n = toNum(idRaw);\n  if (n === null) return;\n  const key = String(Math.trunc(n));\n  map.set(key, (map.get(key) || 0) + 1);\n}\n\nfunction topShare(map) {\n  if (!map.size) return { topId: null, topCount: 0, topPct: 0, total: 0, breakdown: [] };\n  let total = 0, topId = null, topCount = -1;\n  for (const [k, c] of map.entries()) {\n    total += c;\n    if (c > topCount) { topCount = c; topId = k; }\n  }\n  const breakdown = [...map.entries()]\n    .sort((a,b) => b[1]-a[1])\n    .slice(0, 10)\n    .map(([id, count]) => ({ id, count, pct: pct(count, total) }));\n  return { topId, topCount, topPct: pct(topCount, total), total, breakdown };\n}\n\nfunction minMaxPush(mm, v) {\n  if (v === null) return;\n  if (v < mm.min) mm.min = v;\n  if (v > mm.max) mm.max = v;\n}\n\nfunction finalizeMM(mm) {\n  if (mm.min === Infinity) return { min: null, max: null };\n  return { min: mm.min, max: mm.max };\n}\n\n// ---------- timezone / DST-safe helpers ----------\nfunction getTzParts(ms, timeZone = TIMEZONE) {\n  const d = new Date(ms);\n  const dtf = new Intl.DateTimeFormat(\"en-CA\", {\n    timeZone,\n    year: \"numeric\",\n    month: \"2-digit\",\n    day: \"2-digit\",\n    hour: \"2-digit\",\n    minute: \"2-digit\",\n    second: \"2-digit\",\n    hourCycle: \"h23\",\n  });\n\n  const parts = dtf.formatToParts(d);\n  const obj = {};\n  for (const p of parts) {\n    if (p.type !== \"literal\") obj[p.type] = p.value;\n  }\n\n  return {\n    year: Number(obj.year),\n    month: Number(obj.month),\n    day: Number(obj.day),\n    hour: Number(obj.hour),\n    minute: Number(obj.minute),\n    second: Number(obj.second),\n  };\n}\n\nfunction ymdInPrague(dateNow = new Date()) {\n  const p = getTzParts(dateNow.getTime(), TIMEZONE);\n  return `${p.year}-${pad2(p.month)}-${pad2(p.day)}`;\n}\n\nfunction getOffsetMs(ms, timeZone = TIMEZONE) {\n  const p = getTzParts(ms, timeZone);\n  const utcEquivalent = Date.UTC(\n    p.year,\n    p.month - 1,\n    p.day,\n    p.hour,\n    p.minute,\n    p.second,\n    0\n  );\n  return utcEquivalent - ms;\n}\n\nfunction zonedDateTimeToUtcMs(year, month, day, hour = 0, minute = 0, second = 0, ms = 0, timeZone = TIMEZONE) {\n  let guess = Date.UTC(year, month - 1, day, hour, minute, second, ms);\n\n  let offset = getOffsetMs(guess, timeZone);\n  let result = Date.UTC(year, month - 1, day, hour, minute, second, ms) - offset;\n\n  const offset2 = getOffsetMs(result, timeZone);\n  if (offset2 !== offset) {\n    result = Date.UTC(year, month - 1, day, hour, minute, second, ms) - offset2;\n  }\n\n  return result;\n}\n\nfunction makePragueMidnightMs(ymd) {\n  const [y, m, d] = ymd.split(\"-\").map(Number);\n  return zonedDateTimeToUtcMs(y, m, d, 0, 0, 0, 0, TIMEZONE);\n}\n\nfunction formatOffset(offsetMs) {\n  const sign = offsetMs >= 0 ? \"+\" : \"-\";\n  const abs = Math.abs(offsetMs);\n  const hh = pad2(Math.floor(abs / 3600000));\n  const mm = pad2(Math.floor((abs % 3600000) / 60000));\n  return `${sign}${hh}:${mm}`;\n}\n\nfunction formatPrague(ms) {\n  const p = getTzParts(ms, TIMEZONE);\n  const d = new Date(ms);\n  const milli = pad3(d.getUTCMilliseconds());\n  const offset = formatOffset(getOffsetMs(ms, TIMEZONE));\n\n  return `${p.year}-${pad2(p.month)}-${pad2(p.day)}T${pad2(p.hour)}:${pad2(p.minute)}:${pad2(p.second)}.${milli}${offset}`;\n}\n\nfunction formatDuration(ms) {\n  if (ms === null || ms === undefined || !Number.isFinite(ms) || ms < 0) return \"\";\n  const totalSec = Math.round(ms / 1000);\n  const h = Math.floor(totalSec / 3600);\n  const m = Math.floor((totalSec % 3600) / 60);\n  const s = totalSec % 60;\n  return `${pad2(h)}:${pad2(m)}:${pad2(s)}`;\n}\n\n// ---------- rounding + formatting ----------\nfunction roundTo(v, d){\n  if (v === null || v === undefined || !Number.isFinite(v)) return null;\n  const p = 10 ** d;\n  return Math.round(v * p) / p;\n}\n\nfunction decimalsFor(unit, metric){\n  if (unit === \"V\") {\n    if (String(metric).includes(\"spread\")) return 4;\n    return 3;\n  }\n  if (unit === \"°C\") return 1;\n  if (unit === \"%\") return 1;\n  return 3;\n}\n\nfunction fmt(v, d){\n  if (v === null || v === undefined || !Number.isFinite(v)) return \"\";\n  return roundTo(v, d).toFixed(d);\n}\n\nfunction fmtSmart(v, unit, metric){\n  const d = decimalsFor(unit, metric);\n  return fmt(v, d);\n}\n\nfunction fmtRule(rule, unit, metric){\n  if (!rule) return \"\";\n  const u = rule.unit || unit || \"\";\n  const d = decimalsFor(u, metric);\n  if (rule.min !== undefined && rule.max !== undefined) {\n    return `${fmt(rule.min, d)}–${fmt(rule.max, d)} ${u}`.trim();\n  }\n  if (rule.max !== undefined) {\n    return `≤ ${fmt(rule.max, d)} ${u}`.trim();\n  }\n  return `${JSON.stringify(rule)}`;\n}\n\nfunction fmtIds(idsArr, cap = 12) {\n  const ids = (idsArr || [])\n    .map(x => String(x).trim())\n    .filter(x => x.length > 0);\n\n  if (!ids.length) return \"\";\n\n  ids.sort((a,b) => {\n    const na = Number(a), nb = Number(b);\n    const fa = Number.isFinite(na), fb = Number.isFinite(nb);\n    if (fa && fb) return na - nb;\n    if (fa && !fb) return -1;\n    if (!fa && fb) return 1;\n    return a.localeCompare(b);\n  });\n\n  const shown = ids.slice(0, cap);\n  const rest = ids.length - shown.length;\n  return rest > 0\n    ? `IDs: ${shown.join(\", \")} (+${rest} dalších)`\n    : `IDs: ${shown.join(\", \")}`;\n}\n\n// ----------------- INPUT -----------------\nconst rawRows = input.array;\nconst windowMode = (input.windowMode || \"yesterday\").toLowerCase();\n\nif (!Array.isArray(rawRows) || rawRows.length === 0) {\n  const html = `<!doctype html><html><body style=\"font-family:system-ui\">\n    <h3>Error</h3><p>input.array missing/empty</p></body></html>`;\n  return [{ html }];\n}\n\n// ----------------- WINDOW -----------------\nconst todayYMD = ymdInPrague(new Date());\nconst todayStartMs = makePragueMidnightMs(todayYMD);\n\nlet startMs, endMs;\n\nif (windowMode === \"today\") {\n  const nextDayDate = new Date(todayStartMs + 36 * 60 * 60 * 1000);\n  const nextYMD = ymdInPrague(nextDayDate);\n\n  startMs = todayStartMs;\n  endMs   = makePragueMidnightMs(nextYMD);\n} else {\n  const prevDayDate = new Date(todayStartMs - 1);\n  const prevYMD = ymdInPrague(prevDayDate);\n\n  startMs = makePragueMidnightMs(prevYMD);\n  endMs   = todayStartMs;\n}\n\nconst startStr = formatPrague(startMs);\nconst endStr   = formatPrague(endMs);\n\n// ----------------- FILTER + SORT -----------------\nconst windowRows = [];\nfor (let i = 0; i < rawRows.length; i++) {\n  const r = rawRows[i];\n  const t = r[String(IDX.time)];\n  if (!t) continue;\n  const ms = toMs(t);\n  if (ms === null) continue;\n  if (ms >= startMs && ms < endMs) windowRows.push({ r, t, ms });\n}\n\nif (!windowRows.length) {\n  const html = `<!doctype html><html lang=\"cs\"><body style=\"font-family:system-ui\">\n    <h3>Žádná data v okně</h3>\n    <p>Okno: <code>${esc(startStr)}</code> → <code>${esc(endStr)}</code></p>\n  </body></html>`;\n  return [{ html }];\n}\n\nwindowRows.sort((a,b) => a.ms - b.ms);\nconst N = windowRows.length;\n\n// ----------------- ACCUMULATORS -----------------\nconst violatedTs = new Set();\n\nconst mmCellV = { min: Infinity, max: -Infinity };\nconst mmModV  = { min: Infinity, max: -Infinity };\nconst mmCellT = { min: Infinity, max: -Infinity };\nconst mmModT  = { min: Infinity, max: -Infinity };\nconst mmSoc   = { min: Infinity, max: -Infinity };\n\nconst tCellMaxT = new Map();\nconst tCellMinT = new Map();\nconst tModMaxT  = new Map();\nconst tModMinT  = new Map();\nconst tCellMaxV = new Map();\nconst tCellMinV = new Map();\nconst tModMaxV  = new Map();\nconst tModMinV  = new Map();\n\n// ----------------- INTERVAL TRACKING -----------------\nconst open = new Map();\nconst violationRanges = [];\n\nfunction makeKey(metric, type) { return `${metric}::${type}`; }\n\nfunction addIdsFromDetailsToSet(set, details) {\n  if (!set || !details) return;\n  const idMax = details.idMax ?? null;\n  const idMin = details.idMin ?? null;\n  if (idMax !== null && idMax !== undefined && String(idMax).trim() !== \"\") set.add(String(idMax).trim());\n  if (idMin !== null && idMin !== undefined && String(idMin).trim() !== \"\") set.add(String(idMin).trim());\n}\n\nfunction startRange(metric, type, rule, unit, t, ms, value, details) {\n  const ids = new Set();\n  addIdsFromDetailsToSet(ids, details);\n\n  return {\n    metric,\n    type,\n    rule,\n    unit: unit || (rule && rule.unit) || null,\n\n    startTime: t,\n    startMs: ms,\n\n    endTime: null,\n    endMs: null,\n\n    lastBadTime: t,\n    lastBadMs: ms,\n\n    points: 1,\n\n    minValue: value,\n    maxValue: value,\n\n    worstValue: value,\n\n    ids,\n    openEnded: false,\n    durationMs: null,\n    duration: null,\n  };\n}\n\nfunction updateRange(rg, ms, t, value, details, isBelowType) {\n  rg.lastBadTime = t;\n  rg.lastBadMs = ms;\n  rg.points += 1;\n\n  if (value !== null && value !== undefined) {\n    if (rg.minValue === null || rg.minValue === undefined) rg.minValue = value;\n    if (rg.maxValue === null || rg.maxValue === undefined) rg.maxValue = value;\n\n    if (value < rg.minValue) rg.minValue = value;\n    if (value > rg.maxValue) rg.maxValue = value;\n\n    if (isBelowType) {\n      if (rg.worstValue === null || value < rg.worstValue) rg.worstValue = value;\n    } else {\n      if (rg.worstValue === null || value > rg.worstValue) rg.worstValue = value;\n    }\n  }\n\n  addIdsFromDetailsToSet(rg.ids, details);\n}\n\nfunction closeRange(key, resolvedTime, resolvedMs) {\n  const rg = open.get(key);\n  if (!rg) return;\n\n  rg.endTime = resolvedTime;\n  rg.endMs = resolvedMs;\n\n  rg.durationMs = rg.endMs - rg.startMs;\n  rg.duration = formatDuration(rg.durationMs);\n\n  violationRanges.push(rg);\n  open.delete(key);\n}\n\nfunction track(metric, type, isBad, t, ms, value, rule, unit, details) {\n  const key = makeKey(metric, type);\n  const isBelow = (type === \"below_min\");\n  const isActive = open.has(key);\n\n  if (isBad) {\n    if (!isActive) open.set(key, startRange(metric, type, rule, unit, t, ms, value, details));\n    else updateRange(open.get(key), ms, t, value, details, isBelow);\n  } else {\n    if (isActive) closeRange(key, t, ms);\n  }\n}\n\n// ----------------- SINGLE PASS -----------------\nfor (let i = 0; i < N; i++) {\n  const row = windowRows[i].r;\n  const ms = windowRows[i].ms;\n  const t = windowRows[i].t;\n\n  let anyBadThisRow = false;\n\n  const cTmin = toNum(row[String(IDX.cellTmin)]);\n  const cTmax = toNum(row[String(IDX.cellTmax)]);\n  const mTmin = toNum(row[String(IDX.modTmin)]);\n  const mTmax = toNum(row[String(IDX.modTmax)]);\n\n  const cVmin = toNum(row[String(IDX.cellVmin)]);\n  const cVmax = toNum(row[String(IDX.cellVmax)]);\n  const mVmin = toNum(row[String(IDX.modVmin)]);\n  const mVmax = toNum(row[String(IDX.modVmax)]);\n\n  const s = toNum(row[String(IDX.soc)]);\n\n  minMaxPush(mmCellV, cVmin); minMaxPush(mmCellV, cVmax);\n  minMaxPush(mmModV,  mVmin); minMaxPush(mmModV,  mVmax);\n  minMaxPush(mmCellT, cTmin); minMaxPush(mmCellT, cTmax);\n  minMaxPush(mmModT,  mTmin); minMaxPush(mmModT,  mTmax);\n  minMaxPush(mmSoc,   s);\n\n  const cTminBad = (cTmin !== null && cTmin < LIMITS.cellTemp.min);\n  const cTmaxBad = (cTmax !== null && cTmax > LIMITS.cellTemp.max);\n  track(\"cell_temp_min\", \"below_min\", cTminBad, t, ms, cTmin, LIMITS.cellTemp, \"°C\");\n  track(\"cell_temp_max\", \"above_max\", cTmaxBad, t, ms, cTmax, LIMITS.cellTemp, \"°C\");\n  if (cTminBad || cTmaxBad) anyBadThisRow = true;\n\n  const mTminBad = (mTmin !== null && mTmin < LIMITS.modTemp.min);\n  const mTmaxBad = (mTmax !== null && mTmax > LIMITS.modTemp.max);\n  track(\"module_temp_min\", \"below_min\", mTminBad, t, ms, mTmin, LIMITS.modTemp, \"°C\");\n  track(\"module_temp_max\", \"above_max\", mTmaxBad, t, ms, mTmax, LIMITS.modTemp, \"°C\");\n  if (mTminBad || mTmaxBad) anyBadThisRow = true;\n\n  const socLow = (s !== null && s < LIMITS.soc.min);\n  const socHigh = (s !== null && s > LIMITS.soc.max);\n  track(\"soc\", \"below_min\", socLow, t, ms, s, LIMITS.soc, \"%\");\n  track(\"soc\", \"above_max\", socHigh, t, ms, s, LIMITS.soc, \"%\");\n  if (socLow || socHigh) anyBadThisRow = true;\n\n  const cVminBad = (cVmin !== null && cVmin < LIMITS.cellVolt.min);\n  const cVmaxBad = (cVmax !== null && cVmax > LIMITS.cellVolt.max);\n  track(\"cell_voltage_min\", \"below_min\", cVminBad, t, ms, cVmin, LIMITS.cellVolt, \"V\");\n  track(\"cell_voltage_max\", \"above_max\", cVmaxBad, t, ms, cVmax, LIMITS.cellVolt, \"V\");\n  if (cVminBad || cVmaxBad) anyBadThisRow = true;\n\n  if (cTmin !== null && cTmax !== null) {\n    const spread = cTmax - cTmin;\n    const bad = spread > LIMITS.cellTempSpreadMax;\n    track(\n      \"cell_temp_spread\",\n      \"spread_exceeded\",\n      bad,\n      t,\n      ms,\n      spread,\n      { max: LIMITS.cellTempSpreadMax, unit: \"°C\" },\n      \"°C\",\n      bad ? { idMax: row[String(IDX.cellIdMaxT)] ?? null, idMin: row[String(IDX.cellIdMinT)] ?? null } : null\n    );\n    if (bad) anyBadThisRow = true;\n  } else {\n    track(\"cell_temp_spread\", \"spread_exceeded\", false, t, ms, null, { max: LIMITS.cellTempSpreadMax, unit: \"°C\" }, \"°C\");\n  }\n\n  if (mTmin !== null && mTmax !== null) {\n    const spread = mTmax - mTmin;\n    const bad = spread > LIMITS.modTempSpreadMax;\n    track(\n      \"module_temp_spread\",\n      \"spread_exceeded\",\n      bad,\n      t,\n      ms,\n      spread,\n      { max: LIMITS.modTempSpreadMax, unit: \"°C\" },\n      \"°C\",\n      bad ? { idMax: row[String(IDX.modIdMaxT)] ?? null, idMin: row[String(IDX.modIdMinT)] ?? null } : null\n    );\n    if (bad) anyBadThisRow = true;\n  } else {\n    track(\"module_temp_spread\", \"spread_exceeded\", false, t, ms, null, { max: LIMITS.modTempSpreadMax, unit: \"°C\" }, \"°C\");\n  }\n\n  if (mVmin !== null && mVmax !== null) {\n    const spread = mVmax - mVmin;\n    const bad = spread > LIMITS.moduleVoltSpreadMax;\n    track(\n      \"module_voltage_spread\",\n      \"spread_exceeded\",\n      bad,\n      t,\n      ms,\n      spread,\n      { max: LIMITS.moduleVoltSpreadMax, unit: \"V\" },\n      \"V\",\n      bad ? { idMax: row[String(IDX.modIdMaxV)] ?? null, idMin: row[String(IDX.modIdMinV)] ?? null } : null\n    );\n    if (bad) anyBadThisRow = true;\n  } else {\n    track(\"module_voltage_spread\", \"spread_exceeded\", false, t, ms, null, { max: LIMITS.moduleVoltSpreadMax, unit: \"V\" }, \"V\");\n  }\n\n  if (cVmin !== null && cVmax !== null) {\n    const spread = cVmax - cVmin;\n    const bad = spread > LIMITS.cellVoltSpreadMax;\n    track(\n      \"cell_voltage_spread\",\n      \"spread_exceeded\",\n      bad,\n      t,\n      ms,\n      spread,\n      { max: LIMITS.cellVoltSpreadMax, unit: \"V\" },\n      \"V\",\n      bad ? { idMax: row[String(IDX.cellIdMaxV)] ?? null, idMin: row[String(IDX.cellIdMinV)] ?? null } : null\n    );\n    if (bad) anyBadThisRow = true;\n  } else {\n    track(\"cell_voltage_spread\", \"spread_exceeded\", false, t, ms, null, { max: LIMITS.cellVoltSpreadMax, unit: \"V\" }, \"V\");\n  }\n\n  if (anyBadThisRow) violatedTs.add(t);\n\n  tallyInc(tCellMaxT, row[String(IDX.cellIdMaxT)]);\n  tallyInc(tCellMinT, row[String(IDX.cellIdMinT)]);\n  tallyInc(tModMaxT,  row[String(IDX.modIdMaxT)]);\n  tallyInc(tModMinT,  row[String(IDX.modIdMinT)]);\n\n  tallyInc(tCellMaxV, row[String(IDX.cellIdMaxV)]);\n  tallyInc(tCellMinV, row[String(IDX.cellIdMinV)]);\n  tallyInc(tModMaxV,  row[String(IDX.modIdMaxV)]);\n  tallyInc(tModMinV,  row[String(IDX.modIdMinV)]);\n}\n\n// Close any still-open violations at window end\nfor (const [key, rg] of open.entries()) {\n  rg.endTime = endStr;\n  rg.endMs = endMs;\n  rg.openEnded = true;\n  rg.durationMs = rg.endMs - rg.startMs;\n  rg.duration = formatDuration(rg.durationMs);\n  violationRanges.push(rg);\n}\nopen.clear();\n\nconst top = {\n  cell_max_temp: topShare(tCellMaxT),\n  cell_min_temp: topShare(tCellMinT),\n  mod_max_temp:  topShare(tModMaxT),\n  mod_min_temp:  topShare(tModMinT),\n  cell_max_volt: topShare(tCellMaxV),\n  cell_min_volt: topShare(tCellMinV),\n  mod_max_volt:  topShare(tModMaxV),\n  mod_min_volt:  topShare(tModMinV),\n};\n\nconst violationRangesOut = violationRanges.map(v => {\n  const unit = v.unit || (v.rule && v.rule.unit) || null;\n  const d = decimalsFor(unit, v.metric);\n\n  const idsText = (v.type === \"spread_exceeded\" && v.ids && v.ids.size)\n    ? fmtIds(Array.from(v.ids), 12)\n    : \"\";\n\n  return {\n    metric: v.metric,\n    type: v.type,\n\n    startTime: v.startTime,\n    endTime: v.endTime,\n    openEnded: !!v.openEnded,\n    duration: v.duration,\n    points: v.points,\n\n    unit,\n\n    worstValue: roundTo(v.worstValue, d),\n    minValue: roundTo(v.minValue, d),\n    maxValue: roundTo(v.maxValue, d),\n\n    worstText: `${fmtSmart(v.worstValue, unit, v.metric)}${unit ? \" \" + unit : \"\"}`.trim(),\n    minText: fmtSmart(v.minValue, unit, v.metric),\n    maxText: fmtSmart(v.maxValue, unit, v.metric),\n    ruleText: fmtRule(v.rule, unit, v.metric),\n\n    detailsText: idsText,\n  };\n});\n\nconst summary = {\n  window: { start: startStr, end: endStr, points: N },\n\n  cell_voltage:   { ...finalizeMM(mmCellV), unit: \"V\" },\n  module_voltage: { ...finalizeMM(mmModV),  unit: \"V\" },\n  cell_temp:      { ...finalizeMM(mmCellT), unit: \"°C\" },\n  module_temp:    { ...finalizeMM(mmModT),  unit: \"°C\" },\n  soc:            { ...finalizeMM(mmSoc),   unit: \"%\" },\n\n  counts: {\n    totalViolations: violationRangesOut.length,\n    violatedTimestamps: violatedTs.size,\n  }\n};\n\n// ----------------- HTML -----------------\nconst ok = true;\nconst stateText = (summary.counts.totalViolations === 0 ? \"VYHOVUJÍCÍ\" : \"NEVYHOVUJÍCÍ\");\nconst dotClass  = (summary.counts.totalViolations === 0 ? \"okdot\" : \"baddot\");\nconst reportId  = new Date().toISOString();\n\nconst violationsSectionHtml =\n  (violationRangesOut.length === 0)\n    ? `<div class=\"card\" style=\"padding:14px; border-radius:16px;\">\n        <span class=\"okdot\"></span>\n        <strong>Všechny kontroly prošly.</strong>\n        <div class=\"subtitle\" style=\"margin-top:6px;\">\n          Ve zvoleném 24hodinovém okně nebylo zjištěno žádné porušení mezních hodnot.\n        </div>\n      </div>`\n    : `<div class=\"viol-wrapper\">\n        <table class=\"viol-table\">\n          <thead>\n            <tr>\n              <th style=\"width:190px;\">Čas (Od – Do)</th>\n              <th style=\"width:150px;\">Veličina</th>\n              <th style=\"width:92px;\">Trvání</th>\n              <th style=\"width:160px;\">Extrém</th>\n              <th>Pravidlo / detaily</th>\n            </tr>\n          </thead>\n          <tbody>\n            ${violationRangesOut.map(v => `\n              <tr>\n                <td>\n                  <code>${esc(v.startTime)}</code><br/>\n                  <code>${esc(v.endTime)}</code>\n                  ${v.openEnded ? `<div class=\"mutedline\">(neukončeno v okně)</div>` : ``}\n                </td>\n\n                <td>\n                  <div><span class=\"viol-pill\">${esc(v.metric)}</span></div>\n                  <div style=\"margin-top:4px;\"><span class=\"viol-pill\">${esc(v.type)}</span></div>\n                </td>\n\n                <td><code>${esc(v.duration || \"\")}</code></td>\n\n                <td>\n                  <div class=\"viol-strong\"><code>${esc(v.worstText)}</code></div>\n                  <div class=\"mutedline\">\n                    min: <code>${esc(v.minText)}</code> · max: <code>${esc(v.maxText)}</code>\n                  </div>\n                </td>\n\n                <td class=\"wrap\">\n                  <div class=\"mutedline\"><span class=\"muted\">limit:</span> <code>${esc(v.ruleText)}</code></div>\n                  ${v.detailsText ? `<div class=\"mutedline\"><span class=\"muted\">detaily:</span> <code>${esc(v.detailsText)}</code></div>` : ``}\n                </td>\n              </tr>\n            `).join(\"\")}\n          </tbody>\n        </table>\n      </div>`;\n\nconst annexRows = (arr) =>\n  (Array.isArray(arr) ? arr : []).map(x => `\n    <tr>\n      <td><code>${esc(x.id)}</code></td>\n      <td class=\"right\"><code>${esc(x.count)}</code></td>\n      <td class=\"right\"><code>${esc(x.pct)}%</code></td>\n    </tr>`).join(\"\");\n\nconst html = `<!doctype html>\n<html lang=\"cs\">\n<head>\n  <meta charset=\"utf-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n  <title>24h zpráva o limitech BESS</title>\n\n  <style>\n    :root{\n      --bg:#ffffff;\n      --card:#ffffff;\n      --muted:#4b5563;\n      --text:#0b1220;\n      --line:rgba(2,6,23,.15);\n      --good:#16a34a;\n      --bad:#dc2626;\n      --warn:#f59e0b;\n      --pill:#f3f4f6;\n      --sans: Arial, Helvetica, \"Liberation Sans\", sans-serif;\n      --mono: \"Courier New\", Courier, monospace;\n    }\n\n    *{box-sizing:border-box}\n    body{\n      margin:0;\n      font-family:var(--sans);\n      color:var(--text);\n      background: linear-gradient(180deg, #ffffff, #f8fafc 40%, #ffffff);\n      -webkit-print-color-adjust: exact;\n      print-color-adjust: exact;\n    }\n\n    .page{\n      width: 100%;\n      max-width: none;\n      margin: 0 auto;\n      padding: 28px 22px 40px;\n    }\n\n    .header{\n      display:flex;\n      align-items:flex-start;\n      justify-content:space-between;\n      gap:16px;\n      margin-bottom:18px;\n    }\n\n    .title h1{\n      margin:0;\n      font-size:22px;\n      letter-spacing:.2px;\n    }\n\n    .subtitle{\n      margin-top:6px;\n      color:var(--muted);\n      font-size:12.5px;\n      line-height:1.35;\n    }\n\n    .badge{\n      display:inline-flex;\n      align-items:center;\n      gap:8px;\n      padding:10px 12px;\n      border-radius:14px;\n      background: #ffffff;\n      border:1px solid var(--line);\n      min-width: 260px;\n      justify-content:space-between;\n      box-shadow: 0 8px 22px rgba(2,6,23,.06);\n    }\n\n    .badge .state{\n      font-weight:700;\n      letter-spacing:.3px;\n      font-size:12px;\n      text-transform:uppercase;\n    }\n\n    .pill{\n      font-family:var(--mono);\n      font-size:11px;\n      padding:1px 5px;\n      border-radius:999px;\n      background: var(--pill);\n      border:1px solid var(--line);\n      color:var(--text);\n      white-space:nowrap;\n    }\n\n    .grid{\n      display:grid;\n      grid-template-columns: repeat(12, 1fr);\n      gap:12px;\n      margin-top:14px;\n    }\n\n    .card{\n      grid-column: span 6;\n      background: #ffffff;\n      border:1px solid var(--line);\n      border-radius:16px;\n      padding:14px 14px 12px;\n      box-shadow: 0 10px 26px rgba(2,6,23,.06);\n      backdrop-filter: none;\n    }\n\n    .card h2{\n      margin:0 0 10px;\n      font-size:13px;\n      letter-spacing:.2px;\n      color: var(--text);\n      display:flex;\n      align-items:center;\n      justify-content:space-between;\n      gap:10px;\n    }\n\n    .kpis{\n      display:grid;\n      grid-template-columns: repeat(12, 1fr);\n      gap:10px;\n    }\n\n    .kpi{\n      grid-column: span 6;\n      padding:10px 10px 9px;\n      border-radius:14px;\n      border:1px solid var(--line);\n      background: #f8fafc;\n    }\n\n    .kpi .label{\n      font-size:11px;\n      color:var(--muted);\n      margin-bottom:6px;\n    }\n\n    .kpi .value{\n      font-family:var(--mono);\n      font-size:13px;\n      line-height:1.35;\n      display:flex;\n      justify-content:space-between;\n      gap:10px;\n    }\n\n    .muted{ color: var(--muted); }\n    .small{ font-size:11px; }\n    .right{ text-align:right; }\n\n    table{\n      width:100%;\n      border-collapse: separate;\n      border-spacing: 0;\n      overflow:hidden;\n      border-radius:14px;\n      border:1px solid var(--line);\n      background: #ffffff;\n      table-layout: fixed;\n    }\n\n    th, td{\n      padding:10px 10px;\n      font-size:12px;\n      border-bottom:1px solid var(--line);\n      vertical-align:top;\n      overflow-wrap:anywhere;\n      word-break: break-word;\n    }\n\n    th{\n      text-align:left;\n      color:var(--text);\n      font-weight:700;\n      background: #f8fafc;\n    }\n\n    tr:last-child td{ border-bottom:none; }\n\n    td code{\n      font-family:var(--mono);\n      font-size:11.5px;\n      color:var(--text);\n      white-space: nowrap;\n    }\n\n    .section{\n      margin-top:16px;\n    }\n\n    .section-title{\n      display:flex;\n      align-items:center;\n      justify-content:space-between;\n      margin: 0 0 10px;\n      gap:10px;\n    }\n\n    .section-title h3{\n      margin:0;\n      font-size:13px;\n      color:var(--text);\n      letter-spacing:.2px;\n    }\n\n    .okdot, .baddot, .warndot{\n      width:10px;height:10px;border-radius:999px;display:inline-block;\n      margin-right:8px;\n    }\n    .okdot{ background: var(--good); box-shadow: 0 0 0 3px rgba(22,163,74,.15); }\n    .baddot{ background: var(--bad); box-shadow: 0 0 0 3px rgba(220,38,38,.15); }\n    .warndot{ background: var(--warn); box-shadow: 0 0 0 3px rgba(245,158,11,.15); }\n\n    .row2{\n      display:grid;\n      grid-template-columns: 1fr 1fr;\n      gap:12px;\n    }\n\n    .footer{\n      margin-top:18px;\n      padding-top:12px;\n      border-top:1px dashed var(--line);\n      color:var(--muted);\n      font-size:11px;\n      display:flex;\n      justify-content:space-between;\n      gap:12px;\n      flex-wrap:wrap;\n    }\n\n    .viol-table{ table-layout: fixed; }\n    .viol-table th, .viol-table td{\n      padding: 8px 10px;\n      line-height: 1.25;\n      font-size: 12px;\n      vertical-align: top;\n    }\n    .viol-table td code{\n      font-size: 11px;\n      white-space: nowrap;\n    }\n    .viol-table .wrap code{\n      white-space: normal;\n    }\n    .viol-table .mutedline{\n      margin-top: 3px;\n      font-size: 11px;\n      line-height: 1.2;\n      color: var(--muted);\n    }\n    .viol-pill{\n      display:inline-block;\n      padding:2px 8px;\n      border-radius:999px;\n      border:1px solid var(--line);\n      background: var(--pill);\n      font-family: var(--mono);\n      font-size: 10.5px;\n      white-space: nowrap;\n    }\n    .viol-strong{ font-weight: 700; }\n\n    thead{ display: table-header-group; }\n    tfoot{ display: table-footer-group; }\n    tr{ break-inside: avoid; page-break-inside: avoid; }\n\n    @page {\n      size: A4;\n      margin: 22mm 14mm 18mm 14mm;\n    }\n\n    @media print{\n      body{ background:#fff; color:#0b1220; }\n      .page{ padding: 0; }\n      .card{ background:#fff; box-shadow:none; }\n      table{ background:#fff; }\n      .badge{ background:#fff; box-shadow:none; }\n\n      .grid, .row2{ display:block; }\n      .card{ margin-bottom:12mm; }\n\n      td:nth-child(1) code,\n      td:nth-child(2) code{ font-size: 10.5px; }\n    }\n\n    .section-title{\n      break-after: avoid;\n      page-break-after: avoid;\n    }\n\n    .section-title + *{\n      break-before: avoid;\n      page-break-before: avoid;\n    }\n\n    .annex-card,\n    .annex-card table{\n      break-inside: avoid !important;\n      page-break-inside: avoid !important;\n    }\n\n    .annex-card{\n      display: block;\n    }\n\n    .viol-wrapper{\n      border:1px solid var(--line);\n      border-radius:14px;\n      overflow:hidden;\n      background:#fff;\n    }\n\n    .viol-table{\n      border:none;\n      border-radius:0;\n    }\n\n    @media print{\n      .section{\n        break-inside: avoid !important;\n        page-break-inside: avoid !important;\n      }\n\n      .card,\n      .annex-card{\n        break-inside: avoid !important;\n        page-break-inside: avoid !important;\n        display:block;\n      }\n\n      .card table,\n      .annex-card table{\n        break-inside: avoid !important;\n        page-break-inside: avoid !important;\n      }\n\n      table tr,\n      table thead,\n      table tbody,\n      table tfoot{\n        break-inside: avoid !important;\n        page-break-inside: avoid !important;\n      }\n\n      .section-title{\n        break-after: avoid !important;\n        page-break-after: avoid !important;\n      }\n      .section-title + *{\n        break-before: avoid !important;\n        page-break-before: avoid !important;\n      }\n    }\n  </style>\n</head>\n\n<body>\n  <div class=\"page\">\n\n    <div class=\"header\">\n      <div class=\"title\">\n        <h1>24h zpráva o limitech BESS</h1>\n        <div class=\"subtitle\">\n          Okno hodnocení:\n          <span class=\"pill\">${esc(summary.window.start)}</span>\n          →\n          <span class=\"pill\">${esc(summary.window.end)}</span>\n          <br/>\n          Počet časových okamžiků s porušením: <span class=\"pill\">${esc(summary.counts.violatedTimestamps)}</span>\n        </div>\n      </div>\n\n      <div class=\"badge\">\n        <div>\n          <div class=\"state\">\n            ${esc(stateText)}\n          </div>\n          <div class=\"subtitle\" style=\"margin:6px 0 0;\">\n            Celkový počet porušení: <span class=\"pill\">${esc(summary.counts.totalViolations)}</span>\n          </div>\n        </div>\n        <div style=\"display:flex; align-items:center; gap:10px;\">\n          <span class=\"${esc(dotClass)}\"></span>\n          <span class=\"pill\">${esc(ok ? \"OK\" : \"CHYBA\")}</span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"grid\">\n      <div class=\"card\" style=\"grid-column: span 7;\">\n        <h2>Provozní rozsah <span class=\"pill\">Souhrn</span></h2>\n\n        <div class=\"kpis\">\n          <div class=\"kpi\">\n            <div class=\"label\">Napětí článků (${esc(summary.cell_voltage.unit)})</div>\n            <div class=\"value\">\n              <span><code>min</code> ${esc(summary.cell_voltage.min)}</span>\n              <span class=\"muted\">→</span>\n              <span><code>max</code> ${esc(summary.cell_voltage.max)}</span>\n            </div>\n          </div>\n\n          <div class=\"kpi\">\n            <div class=\"label\">Napětí modulů (${esc(summary.module_voltage.unit)})</div>\n            <div class=\"value\">\n              <span><code>min</code> ${esc(summary.module_voltage.min)}</span>\n              <span class=\"muted\">→</span>\n              <span><code>max</code> ${esc(summary.module_voltage.max)}</span>\n            </div>\n          </div>\n\n          <div class=\"kpi\">\n            <div class=\"label\">Teplota článků (${esc(summary.cell_temp.unit)})</div>\n            <div class=\"value\">\n              <span><code>min</code> ${esc(summary.cell_temp.min)}</span>\n              <span class=\"muted\">→</span>\n              <span><code>max</code> ${esc(summary.cell_temp.max)}</span>\n            </div>\n          </div>\n\n          <div class=\"kpi\">\n            <div class=\"label\">Teplota modulů (${esc(summary.module_temp.unit)})</div>\n            <div class=\"value\">\n              <span><code>min</code> ${esc(summary.module_temp.min)}</span>\n              <span class=\"muted\">→</span>\n              <span><code>max</code> ${esc(summary.module_temp.max)}</span>\n            </div>\n          </div>\n\n          <div class=\"kpi\" style=\"grid-column: span 12;\">\n            <div class=\"label\">SOC (${esc(summary.soc.unit)})</div>\n            <div class=\"value\">\n              <span><code>min</code> ${esc(summary.soc.min)}</span>\n              <span class=\"muted\">→</span>\n              <span><code>max</code> ${esc(summary.soc.max)}</span>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"card\" style=\"grid-column: span 5;\">\n        <h2>Použité limity</h2>\n\n        <table>\n          <thead>\n            <tr>\n              <th>Veličina</th>\n              <th class=\"right\">Limit</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr><td>Teplota článků</td><td class=\"right\"><code>${esc(LIMITS.cellTemp.min)}–${esc(LIMITS.cellTemp.max)}</code> ${esc(LIMITS.cellTemp.unit)}</td></tr>\n            <tr><td>Teplota modulů</td><td class=\"right\"><code>${esc(LIMITS.modTemp.min)}–${esc(LIMITS.modTemp.max)}</code> ${esc(LIMITS.modTemp.unit)}</td></tr>\n            <tr><td>SOC</td><td class=\"right\"><code>${esc(LIMITS.soc.min)}–${esc(LIMITS.soc.max)}</code> ${esc(LIMITS.soc.unit)}</td></tr>\n            <tr><td>Bezpečné napětí článků</td><td class=\"right\"><code>${esc(LIMITS.cellVolt.min)}–${esc(LIMITS.cellVolt.max)}</code> ${esc(LIMITS.cellVolt.unit)}</td></tr>\n            <tr><td>Rozdíl teplot článků</td><td class=\"right\"><code>≤ ${esc(LIMITS.cellTempSpreadMax)}</code> °C</td></tr>\n            <tr><td>Rozdíl teplot modulů</td><td class=\"right\"><code>≤ ${esc(LIMITS.modTempSpreadMax)}</code> °C</td></tr>\n            <tr><td>Rozdíl napětí článků</td><td class=\"right\"><code>≤ ${esc(LIMITS.cellVoltSpreadMax)}</code> V</td></tr>\n            <tr><td>Rozdíl napětí modulů</td><td class=\"right\"><code>≤ ${esc(LIMITS.moduleVoltSpreadMax)}</code> V</td></tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n\n    <div class=\"section\">\n      <div class=\"section-title\">\n        <h3>Porušení limitů (intervaly)</h3>\n        <span class=\"pill\">${esc(violationRangesOut.length)} intervalů</span>\n      </div>\n\n      ${violationsSectionHtml}\n    </div>\n\n    <div class=\"section\">\n      <div class=\"section-title\">\n        <h3>Dominance (články a moduly s největšími a nejmenšími hodnotami)</h3>\n      </div>\n\n      <div class=\"row2\">\n        <div class=\"card\">\n          <h2>Teplotní statistiky</h2>\n          <table>\n            <thead>\n              <tr><th>Kategorie</th><th class=\"right\">Sériové číslo</th><th class=\"right\">Podíl</th></tr>\n            </thead>\n            <tbody>\n              <tr><td>Článek s max. teplotou</td><td class=\"right\"><code>${esc(top.cell_max_temp.topId)}</code></td><td class=\"right\"><code>${esc(top.cell_max_temp.topPct)}%</code></td></tr>\n              <tr><td>Článek s min. teplotou</td><td class=\"right\"><code>${esc(top.cell_min_temp.topId)}</code></td><td class=\"right\"><code>${esc(top.cell_min_temp.topPct)}%</code></td></tr>\n              <tr><td>Modul s max. teplotou</td><td class=\"right\"><code>${esc(top.mod_max_temp.topId)}</code></td><td class=\"right\"><code>${esc(top.mod_max_temp.topPct)}%</code></td></tr>\n              <tr><td>Modul s min. teplotou</td><td class=\"right\"><code>${esc(top.mod_min_temp.topId)}</code></td><td class=\"right\"><code>${esc(top.mod_min_temp.topPct)}%</code></td></tr>\n            </tbody>\n          </table>\n        </div>\n\n        <div class=\"card\">\n          <h2>Napěťová statistiky</h2>\n          <table>\n            <thead>\n              <tr><th>Kategorie</th><th class=\"right\">Sériové číslo</th><th class=\"right\">Podíl</th></tr>\n            </thead>\n            <tbody>\n              <tr><td>Článek s max. napětím</td><td class=\"right\"><code>${esc(top.cell_max_volt.topId)}</code></td><td class=\"right\"><code>${esc(top.cell_max_volt.topPct)}%</code></td></tr>\n              <tr><td>Článek s min. napětím</td><td class=\"right\"><code>${esc(top.cell_min_volt.topId)}</code></td><td class=\"right\"><code>${esc(top.cell_min_volt.topPct)}%</code></td></tr>\n              <tr><td>Modul s max. napětím</td><td class=\"right\"><code>${esc(top.mod_max_volt.topId)}</code></td><td class=\"right\"><code>${esc(top.mod_max_volt.topPct)}%</code></td></tr>\n              <tr><td>Modul s min. napětím</td><td class=\"right\"><code>${esc(top.mod_min_volt.topId)}</code></td><td class=\"right\"><code>${esc(top.mod_min_volt.topPct)}%</code></td></tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"section\">\n      <div class=\"section-title\">\n        <h3>Příloha: Statistiky podle provozní doby na okrajových hodnotách</h3>\n      </div>\n\n      <div class=\"row2\">\n        <div class=\"card annex-card\">\n          <h2>Rozdělení max. napětí článků</h2>\n          <table>\n            <thead>\n              <tr><th>Sériové číslo</th><th class=\"right\">Počet bodů</th><th class=\"right\">Podíl</th></tr>\n            </thead>\n            <tbody>\n              ${annexRows(top.cell_max_volt.breakdown)}\n            </tbody>\n          </table>\n        </div>\n\n        <div class=\"card annex-card\">\n          <h2>Rozdělení min. napětí modulů</h2>\n          <table>\n            <thead>\n              <tr><th>Sériové číslo</th><th class=\"right\">Počet bodů</th><th class=\"right\">Podíl</th></tr>\n            </thead>\n            <tbody>\n              ${annexRows(top.mod_min_volt.breakdown)}\n            </tbody>\n          </table>\n        </div>\n      </div>\n\n      <div class=\"row2\" style=\"margin-top:12px;\">\n        <div class=\"card annex-card\">\n          <h2>Rozdělení min. napětí článků</h2>\n          <table>\n            <thead>\n              <tr><th>Sériové číslo</th><th class=\"right\">Počet bodů</th><th class=\"right\">Podíl</th></tr>\n            </thead>\n            <tbody>\n              ${annexRows(top.cell_min_volt.breakdown)}\n            </tbody>\n          </table>\n        </div>\n\n        <div class=\"card annex-card\">\n          <h2>Rozdělení max. napětí modulů</h2>\n          <table>\n            <thead>\n              <tr><th>Sériové číslo</th><th class=\"right\">Počet bodů</th><th class=\"right\">Podíl</th></tr>\n            </thead>\n            <tbody>\n              ${annexRows(top.mod_max_volt.breakdown)}\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"footer\">\n      <div>Generováno v Make.com</div>\n      <div class=\"right\">ID zprávy: <span class=\"pill\">${esc(reportId)}</span></div>\n    </div>\n\n  </div>\n</body>\n</html>`;\n\nreturn [{ html }];"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "input": {
+                            "items": [
+                                null
+                            ]
+                        },
+                        "language": {
+                            "mode": "chose",
+                            "label": "JavaScript"
+                        },
+                        "inputFormat": {
+                            "label": "Code editor"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "language",
+                        "type": "select",
+                        "label": "Language",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "javascript",
+                                "python"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "input",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "name",
+                                    "type": "text",
+                                    "label": "Name",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 32,
+                                        "min": 1,
+                                        "pattern": "^[a-zA-Z0-9_]{1,32}$"
+                                    }
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "any",
+                                    "label": "Value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Variable"
+                        },
+                        "type": "array",
+                        "label": "Input"
+                    },
+                    {
+                        "name": "dependencies",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Dependency",
+                            "required": true,
+                            "validate": {
+                                "max": 214,
+                                "min": 1,
+                                "pattern": "^[A-Za-z0-9_@\\./<>\\=\\!~\\^+\\-]{1,214}$"
+                            }
+                        },
+                        "type": "array",
+                        "label": "Additional dependencies (Enterprise plans only)"
+                    },
+                    {
+                        "name": "inputFormat",
+                        "type": "select",
+                        "label": "Input format",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "editor",
+                                "string"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "codeEditorJavascript",
+                        "type": "editor",
+                        "label": "Code",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 10,
+            "module": "custom-js:GeneratePDFV2",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 4998286
+            },
+            "mapper": {
+                "html": "{{16.result[].html}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "custom-js2"
+                            },
+                            "label": "CUSTOM JS VUTBR"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:custom-js2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "html",
+                        "type": "text",
+                        "label": "HTML Code"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 12,
+            "module": "google-email:sendAnEmail",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 4998308
+            },
+            "mapper": {
+                "to": [
+                    "257997@vutbr.cz"
+                ],
+                "subject": "Report BESS {{formatDate(addDays(now; -1); \"YYYY-MM-DD\")}}",
+                "bodyType": "collection",
+                "attachments": [
+                    {
+                        "data": "{{10.fileData}}",
+                        "filename": "{{10.fileName}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "cc": {
+                            "mode": "chose"
+                        },
+                        "to": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "bcc": {
+                            "mode": "chose"
+                        },
+                        "from": {
+                            "mode": "chose"
+                        },
+                        "bodyType": {
+                            "label": "Collection of contents (text, images, etc.)"
+                        },
+                        "contents": {
+                            "mode": "chose"
+                        },
+                        "signature": {
+                            "mode": "chose"
+                        },
+                        "attachments": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "emailHeaders": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-email"
+                            },
+                            "label": "VUTBR (257997@vutbr.cz)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-email",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "to",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address",
+                            "required": true,
+                            "validate": true
+                        },
+                        "type": "array",
+                        "label": "To",
+                        "required": true
+                    },
+                    {
+                        "name": "subject",
+                        "type": "text",
+                        "label": "Subject"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "rawHtml",
+                                "collection"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "attachments",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "filename",
+                                    "type": "filename",
+                                    "label": "File name",
+                                    "required": true,
+                                    "semantic": "file:name"
+                                },
+                                {
+                                    "name": "data",
+                                    "type": "buffer",
+                                    "label": "Data",
+                                    "required": true,
+                                    "semantic": "file:data"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Attachment"
+                        },
+                        "type": "array",
+                        "label": "Attachments"
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "From"
+                    },
+                    {
+                        "name": "cc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address",
+                            "required": true
+                        },
+                        "type": "array",
+                        "label": "CC recipients"
+                    },
+                    {
+                        "name": "bcc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address",
+                            "required": true
+                        },
+                        "type": "array",
+                        "label": "BCC recipients"
+                    },
+                    {
+                        "name": "emailHeaders",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Key",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "text",
+                                    "label": "Value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Email header"
+                        },
+                        "type": "array",
+                        "label": "Additional email headers"
+                    },
+                    {
+                        "name": "contents",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "text",
+                                    "type": "text",
+                                    "label": "Text"
+                                },
+                                {
+                                    "name": "image",
+                                    "spec": [
+                                        {
+                                            "name": "filename",
+                                            "type": "filename",
+                                            "label": "File name",
+                                            "semantic": "file:name"
+                                        },
+                                        {
+                                            "name": "data",
+                                            "type": "buffer",
+                                            "label": "Data",
+                                            "semantic": "file:data"
+                                        },
+                                        {
+                                            "name": "width",
+                                            "type": "uinteger",
+                                            "label": "Width"
+                                        },
+                                        {
+                                            "name": "height",
+                                            "type": "uinteger",
+                                            "label": "Height"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Image"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Content"
+                        },
+                        "type": "array",
+                        "label": "Body contents"
+                    },
+                    {
+                        "name": "signature",
+                        "type": "select",
+                        "label": "Signature content"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 15,
+            "module": "google-drive:uploadAFile",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 5016794
+            },
+            "mapper": {
+                "data": "{{10.fileData}}",
+                "title": "Report BESS {{formatDate(addDays(now; -1); \"YYYY-MM-DD\")}}",
+                "select": "value",
+                "convert": false,
+                "filename": "{{10.fileName}}",
+                "folderId": "/1Bu2wUm0phXiVSE2OMx1a4OpU-reDgITv",
+                "destination": "drive"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1500,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "select": {
+                            "label": "Select from the list"
+                        },
+                        "folderId": {
+                            "mode": "chose",
+                            "path": [
+                                "make.com_BESS_reporty"
+                            ]
+                        },
+                        "destination": {
+                            "label": "My Drive"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-restricted"
+                            },
+                            "label": "My Google Restricted connection (257997@vutbr.cz)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-restricted",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Enter a Folder ID",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "map",
+                                "value"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "New File Name"
+                    },
+                    {
+                        "name": "filename",
+                        "type": "text",
+                        "label": "File Name",
+                        "required": true
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Data",
+                        "required": true
+                    },
+                    {
+                        "name": "convert",
+                        "type": "boolean",
+                        "label": "Convert a File",
+                        "required": true
+                    },
+                    {
+                        "name": "destination",
+                        "type": "select",
+                        "label": "New Drive Location",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "folderId",
+                        "type": "folder",
+                        "label": "New Folder Location",
+                        "required": true
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 14,
+            "module": "google-sheets:clearValuesFromRange",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 4920502
+            },
+            "mapper": {
+                "from": "drive",
+                "range": "A2:T",
+                "sheet": "List 1",
+                "select": "list",
+                "spreadsheetId": "/1CilqFtlEo8GxjHrsCa8ZWAZ7VFzQP3084XwtBqk8ztY"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1800,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "from": {
+                            "label": "My Drive"
+                        },
+                        "sheet": {
+                            "label": "List 1"
+                        },
+                        "select": {
+                            "label": "Search by path"
+                        },
+                        "spreadsheetId": {
+                            "path": [
+                                "Make.com databáze"
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "vutbrgoogle (257997@vutbr.cz)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Search Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "list",
+                                "fromAll",
+                                "map"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "range",
+                        "type": "text",
+                        "label": "Range",
+                        "required": true
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "spreadsheetId",
+                        "type": "file",
+                        "label": "Spreadsheet ID",
+                        "required": true
+                    },
+                    {
+                        "name": "sheet",
+                        "type": "select",
+                        "label": "Sheet Name",
+                        "required": true
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com",
+        "notes": []
+    }
+}
